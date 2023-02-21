@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import PropTypes from 'prop-types';
 
 function JobForm({ onFormSubmit, searchTerms, location, resultsPerPage }) {
 
@@ -26,4 +27,13 @@ function JobForm({ onFormSubmit, searchTerms, location, resultsPerPage }) {
   )
 }
 
-export default JobForm
+JobForm.propTypes = {
+  onFormSubmit: PropTypes.func,
+  searchTerms: PropTypes.string,
+  location: PropTypes.shape({
+    display_name: PropTypes.string,
+  }),
+  resultsPerPage: PropTypes.number
+  }
+  
+  export default JobForm

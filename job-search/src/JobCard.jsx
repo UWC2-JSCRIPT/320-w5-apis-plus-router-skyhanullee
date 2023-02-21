@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function JobCard({ job }) {
   const { title, location, company, salary_min, created } = job
   const dateCreated = new Date(created).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -19,4 +21,23 @@ function JobCard({ job }) {
     </div>
   )
 }
-export default JobCard
+
+JobCard.propTypes = {
+  job: PropTypes.arrayOf(
+    PropTypes.shape({
+      salary_min: PropTypes.number,
+      location: PropTypes.shape({
+        display_name: PropTypes.string,
+      }),
+      description: PropTypes.string,
+      title: PropTypes.string,
+      company: PropTypes.shape({
+        display_name: PropTypes.string
+      }),
+      created: PropTypes.string,
+      id: PropTypes.string,
+    })
+    ),
+  }
+  
+  export default JobCard
