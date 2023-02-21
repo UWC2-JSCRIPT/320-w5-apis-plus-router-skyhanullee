@@ -1,13 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import JobForm from './JobForm';
 import JobCard from './JobCard';
-import jsonData from './data.json';
-
+// import jsonData from './data.json';
 
 function HomePage() {
   const [searchTerms, setSearchTerms] = useState('react');
-  const [location, setLocation] = useState('seattle');
+  const [location, setLocation] = useState('');
   const [resultsPerPage, setResultsPerPage] = useState(4);
 
   const onFormSubmit = (event) => {
@@ -15,38 +14,29 @@ function HomePage() {
     setSearchTerms(event.target[0].value);
     setLocation(event.target[1].value);
     setResultsPerPage(event.target[2].value);
-    console.log('on form submit called');
   }
 
   const [jobResult, setJobResult] = useState(undefined);
   const [loading, toggleLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  const navigate = useNavigate();
-
-
   const API_ID = process.env.REACT_APP_ID;
   const API_KEY = process.env.REACT_APP_KEY;
 
-
   useEffect(() => {
     fetch(`https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=${API_ID}&app_key=${API_KEY}&results_per_page=${resultsPerPage}&what=${searchTerms}&where=${location}`)
-    // fetch(`https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=15ced00f&app_key=41070de76e674338673d84863fadc232&results_per_page=1&what=javascript&where=seattle`)
       .then(response => response.json())
       .then(
         (data) => {
-          // console.log(data);
-          console.log(`https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=${API_ID}&app_key=${API_KEY}&results_per_page=${resultsPerPage}&what=${searchTerms}&where=${location}`);
+          // console.log(`https://api.adzuna.com/v1/api/jobs/us/search/1?app_id=${API_ID}&app_key=${API_KEY}&results_per_page=${resultsPerPage}&what=${searchTerms}&where=${location}`);
           setJobResult(data);
           toggleLoading(false);
-          // navigate('/about');
-      },
-      (error) => {
-        // console.log(error);
-        toggleLoading(false);
-        setHasError(true);
-      }
-    )
+        },
+        (error) => {
+          toggleLoading(false);
+          setHasError(true);
+        }
+      )
   }, [resultsPerPage, searchTerms, location, API_ID, API_KEY])
 
   if (loading) {
@@ -60,15 +50,15 @@ function HomePage() {
   const jobResultList = jobResult.results.map((job) => {
     return (
       <li key={job.id}>
-        <Link to={`/job/${job.id}`} state={{ data: {job} }}>
+        <Link to={`/job/${job.id}`} state={{ data: { job } }}>
           <JobCard
-              job={job}
+            job={job}
           />
         </Link>
       </li>
     )
   });
-  
+
   return (
     <div>
       <section className='job-app-container'>
@@ -80,12 +70,13 @@ function HomePage() {
         />
         <h1>Showing results for: {searchTerms}</h1>
         <section className='job-card-container'>
-        <ul>
-          {jobResultList}
-        </ul>
+          <ul>
+            {jobResultList}
+          </ul>
         </section>
       </section>
     </div>
   );
 }
+
 export default HomePage

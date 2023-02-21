@@ -6,11 +6,11 @@ import HomePage from './HomePage';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Navbar />
       <Routes>
-        <Route path='/' element={<HomePage />}/>
-        <Route path='/job/:jobId' element={<JobPage />}/>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/job/:jobId' element={<JobPage />} />
       </Routes>
     </div>
   );
