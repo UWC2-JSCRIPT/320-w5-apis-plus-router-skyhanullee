@@ -5,11 +5,8 @@
 }
 
 body {
-  /* max-width: 100rem; */
   max-width: 90rem;
   margin: 0 auto;
-  /* background-color: rgb(121, 120, 120); */
-  /* background-color: #9AD5CA; */
   background: linear-gradient(140deg, #89D2DC, #6564DB);
   background-attachment: fixed;
 }
@@ -62,21 +59,21 @@ button:hover {
 }
 
 
-.home-button > a {
+#home-button>a {
   background-color: aliceblue;
   border-radius: 15px;
 }
 
-.home-icon {
+#home-icon {
   font-size: 3rem;
   margin: 0 2rem;
   border-radius: 15px;
 }
 
-.nav-title {
-  margin: 2rem;
+#nav-title {
   display: grid;
   align-content: center;
+  margin-left: 1rem;
 }
 
 .job-app-container {
@@ -86,7 +83,6 @@ button:hover {
 
 .job-form {
   background-color: #101D42;
-  /* background-color: aquamarine; */
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
@@ -94,13 +90,14 @@ button:hover {
   border-radius: 15px;
 }
 
-.job-form > form {
+.job-form>form {
   padding: 1rem;
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
-.job-form > form > div {
+
+.job-form>form>div {
   display: grid;
   align-content: center;
 }
@@ -126,14 +123,14 @@ button[type=submit] {
   font-size: 3rem;
 }
 
-.job-card-container > ul {
+.job-card-container>ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 2rem;
 
 }
 
-.job-card-container > ul > li {
+.job-card-container>ul>li {
   overflow: clip;
 }
 
@@ -153,7 +150,7 @@ button[type=submit] {
 .job-title {
   padding: 2rem;
   margin: 1rem 0;
-  background-color:aliceblue;
+  background-color: aliceblue;
   border-radius: 15px;
 }
 
@@ -164,14 +161,14 @@ button[type=submit] {
   gap: 1rem;
   padding: 2rem;
   margin: 1rem 0;
-  background-color:aliceblue;
+  background-color: aliceblue;
   border-radius: 15px;
 }
 
-.job-description {
+#job-description {
   padding: 2rem;
   margin: 1rem 0;
-  background-color:aliceblue;
+  background-color: aliceblue;
   border-radius: 15px;
 }
 
@@ -184,5 +181,3 @@ button[type=submit] {
   background-color: #473198;
   color: white;
 }
-
-
